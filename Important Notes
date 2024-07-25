@@ -26,3 +26,6 @@ dotnet ef dbcontext scaffold
 Scaffold-DbContext "server=localhost;port=3306;user=root;password=mypass;database=sakila"
      MySql.Data.EntityFrameworkCore -OutputDir Sakila
      -Tables actor,film,film_actor,language -f   
+
+--Using Microsoft SQL Server as the database server, we can explicitly verify the SP result column types by executing the 
+EXEC sp_describe_first_result_set N'[dbo].[TRA_GetWorkFlow]'
