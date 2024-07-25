@@ -7,3 +7,22 @@ WHERE
     pk.object_id IS NULL
 ORDER BY 
     schema_name(tab.schema_id), tab.[name]
+
+--Get The List of Tables with Prefix
+select schema_name(t.schema_id) as schema_name,
+       t.name as table_name
+from sys.tables t
+where t.name like 'hr%'
+order by table_name, schema_name;
+
+--EntityFramework - Can we Scaffold DbContext from selected tables of an existing database
+--.NET Core CLI:
+dotnet ef dbcontext scaffold
+          "server=localhost;port=3306;user=root;password=mypass;database=sakila" 
+         MySql.Data.EntityFrameworkCore -o sakila
+         -t actor -t film -t film_actor -t language -f  
+
+--Package Manager Console in Visual Studio
+Scaffold-DbContext "server=localhost;port=3306;user=root;password=mypass;database=sakila"
+     MySql.Data.EntityFrameworkCore -OutputDir Sakila
+     -Tables actor,film,film_actor,language -f   
